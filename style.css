@@ -4,3 +4,30 @@
   color:green;
   text-align: center;
 }
+
+button{
+  background-color:lightgreen;
+  border-color:green;
+  border-radius: 12px;
+}
+
+.mmButton{
+  width:200px;
+  height:100px;
+  margin-left: 17%;
+  display:inline-block;
+  margin-top:17%
+}
+
+.qbButton{
+  display:none;
+  width:200px;
+  height:100px;
+  margin:2%;
+}
+
+#questionBank{
+  margin-top:28%;
+  margin-left:38%;
+  width:500px;
+}
