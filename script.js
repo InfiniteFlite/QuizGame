@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $("#easyButton").click(function(){
-    displayEasyAnswers(0);
+    displayEasyAnswers(5);
     $(".mmButton").hide();
     $(".qbButton").show();
   });
@@ -38,7 +38,7 @@ function getQuestionOrder(numQuetions)
 function displayEasyAnswers(qNumber)
 {
   getQuestionOrder(10);
-  var questionIndex = qOrder[qNumber];
+  var questionIndex = qOrder[qNumber]-1;
   $("#q1b").text(easyAnswersTL[questionIndex]);
   $("#q2b").text(easyAnswersTR[questionIndex]);
   $("#q3b").text(easyAnswersBL[questionIndex]);
