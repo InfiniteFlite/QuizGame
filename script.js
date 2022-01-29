@@ -11,6 +11,7 @@ $(document).ready(function(){
   $("#easyButton").click(function(){
     $(".mmButton").hide();
     $(".qbButton").show();
+    $("#Question").show();
     easyGame();
   });
   $("#mediumButton").click(function(){
@@ -42,6 +43,7 @@ function getQuestionOrder(numQuetions)
 function displayEasyAnswers(qNumber)
 {
   var questionIndex = qOrder[qNumber]-1;
+  $(".qbButton").css({"background-color":"lightgreen"});
   $("#q1b").text(easyAnswersTL[questionIndex]);
   $("#q2b").text(easyAnswersTR[questionIndex]);
   $("#q3b").text(easyAnswersBL[questionIndex]);
@@ -59,6 +61,9 @@ function easyGame()
         console.log("correct");
         displayEasyAnswers(questionOn);
       }
+    else {
+      $("#q1b").css({"background-color":"red"});
+    }
     });
     $("#q2b").click(function(){
       if(checkAnswer(qOrder[questionOn], 2))
@@ -67,13 +72,19 @@ function easyGame()
         console.log("correct");
         displayEasyAnswers(questionOn);
       }
+    else {
+      $("#q2b").css({"background-color":"red"});
+    }
     });
     $("#q3b").click(function(){
-    if(checkAnswer(qOrder[questionOn], 3))
-    {
-      questionOn++;
-      console.log("correct");
-      displayEasyAnswers(questionOn);
+      if(checkAnswer(qOrder[questionOn], 3))
+      {
+        questionOn++;
+        console.log("correct");
+        displayEasyAnswers(questionOn);
+      }
+    else {
+      $("#q3b").css({"background-color":"red"});
     }
     });
     $("#q4b").click(function(){
@@ -83,10 +94,13 @@ function easyGame()
         console.log("correct");
         displayEasyAnswers(questionOn);
       }
+    else {
+      $("#q4b").css({"background-color":"red"});
+    }
     });
-    if(questionOn == 10)
+    if(questionOn == 9)
     {
-      gameOver = true;
+        $(".qbButton").css({"background-color":"white"});
     }
 }
 

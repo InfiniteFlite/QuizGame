@@ -27,7 +27,15 @@ button{
 }
 
 #questionBank{
-  margin-top:28%;
+  margin-top:10%;
   margin-left:38%;
   width:500px;
+}
+
+#Question{
+  display:none;
+  margin-left: 41%;
+  margin-top: 10%;
+  font-size: 40px;
+  width:300px;
 }
