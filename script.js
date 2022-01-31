@@ -1,10 +1,10 @@
 let qOrder = [];
-let easyAnswersTL = ["1","2","3","4","5","6","7","8","9","10"];
-let easyAnswersTR = ["1","2","3","4","5","6","7","8","9","10"];
-let easyAnswersBL = ["1","2","3","4","5","6","7","8","9","10"];
-let easyAnswersBR = ["1","2","3","4","5","6","7","8","9","10"];
+let easyAnswersTL = ["change","1","Banach-Tarski","Animal and Plant","Without","NonPolar Covalent","Really strong","Heat Capacity","Basicness","Their shape is unstable"];
+let easyAnswersTR = ["life","2","Miller-Urey","Water and Carbon based","With","Hydrogen","Hydrogen","Capillary Action","The amount of water","Diffusion would take too long"];
+let easyAnswersBL = ["animals","3","Walter-Jesse","Big and Small","Within","Polar Covelent","Carbon","Surface Tension","Acidity","They can't move on their own"];
+let easyAnswersBR = ["water","4","Riechman-Weltzer","Underhanded and Overhanded","Withstand","one-sided","Dioxyribonucelicacid","Lizmotis","Potency","They would need too much water"];
 let correctButtonsE = ["2","4","2","1","1","3","2","4","3","2"];
-let easyQuestions = ["Question 1","Question 2","Question 3","Question 4","Question 5","Question 6","Question 7","Question 8","Question 9","Question 10"];
+let easyQuestions = ["Biology is the study of","How many nucleobases are there?","What experiment showed that amino acids can come from nothing?","What are the two basic types of cells?","'A' is the latin root for","The bonds INSIDE of water are what?","The bonds BETWEEN water molecules are what?","Which is not a property of water?","What is PH a measure of?","Why are cells small?"];
 let mediumAnswersTL = ["1","2","3","4","5","6","7","8","9","10"];
 let mediumAnswersTR = ["1","2","3","4","5","6","7","8","9","10"];
 let mediumAnswersBL = ["1","2","3","4","5","6","7","8","9","10"];
@@ -21,26 +21,9 @@ var gameOver = false;
 var questionOn = 0;
 
 $(document).ready(function(){
-  $("#easyButton").click(function(){
-    $(".mmButton").hide();
-    $(".qbButton").show();
-    $("#Question").show();
-    easyGame();
-  });
-  $("#mediumButton").click(function(){
-    $(".mmButton").hide();
-    $(".qbButton").show();
-    $("#Question").show();
-    mediumGame();
-  });
-  $("#hardButton").click(function(){
-    $(".mmButton").hide();
-    $(".qbButton").show();
-    $("#Question").show();
-    hardGame();
-  });
-});
-
+  $('#easyButton').click(easyGame);
+  $("#mediumButton").click(mediumGame);
+  $("#hardButton").click(hardGame);
 
 function getQuestionOrder(numQuetions)
 {
@@ -59,11 +42,7 @@ function getQuestionOrder(numQuetions)
 
 function displayEasyAnswers(qNumber)
 {
-  var questionIndex = qOrder[qNumber]-1;
-  if(questionIndex == -1)
-  {
-    questionIndex = 0;
-  }
+  var questionIndex = qOrder[qNumber];
   $(".qbButton").css({"background-color":"lightgreen"});
   $("#q1b").text(easyAnswersTL[questionIndex]);
   $("#q2b").text(easyAnswersTR[questionIndex]);
@@ -74,11 +53,7 @@ function displayEasyAnswers(qNumber)
 
 function displayMediumAnswers(qNumber)
 {
-  var questionIndex = qOrder[qNumber]-1;
-  if(questionIndex == -1)
-  {
-    questionIndex = 0;
-  }
+  var questionIndex = qOrder[qNumber];
   $(".qbButton").css({"background-color":"lightgreen"});
   $("#q1b").text(mediumAnswersTL[questionIndex]);
   $("#q2b").text(mediumAnswersTR[questionIndex]);
@@ -89,11 +64,7 @@ function displayMediumAnswers(qNumber)
 
 function displayHardAnswers(qNumber)
 {
-  var questionIndex = qOrder[qNumber]-1;
-  if(questionIndex == -1)
-  {
-    questionIndex = 0;
-  }
+  var questionIndex = qOrder[qNumber];
   $(".qbButton").css({"background-color":"lightgreen"});
   $("#q1b").text(hardAnswersTL[questionIndex]);
   $("#q2b").text(hardAnswersTR[questionIndex]);
@@ -106,6 +77,9 @@ function easyGame()
 {
   getQuestionOrder(10);
   questionOn = 0;
+  $(".mmButton").hide();
+  $(".qbButton").show();
+  $("#Question").show();
   displayEasyAnswers(questionOn);
 
     $("#q1b").click(function(){
@@ -117,7 +91,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("easy");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -132,7 +106,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("easy");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -147,7 +121,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("easy");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -162,7 +136,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons();
+        gameOverButtons("easy");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -175,6 +149,9 @@ function mediumGame()
   getQuestionOrder(10);
   questionOn = 0;
   displayMediumAnswers(questionOn);
+  $(".mmButton").hide();
+  $(".qbButton").show();
+  $("#Question").show();
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "medium"))
@@ -185,7 +162,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("medium");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -200,7 +177,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("medium");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -215,7 +192,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("medium");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -230,7 +207,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons();
+        gameOverButtons("medium");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -243,6 +220,9 @@ function hardGame()
   getQuestionOrder(10);
   questionOn = 0;
   displayHardAnswers(questionOn);
+  $(".mmButton").hide();
+  $(".qbButton").show();
+  $("#Question").show();
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "hard"))
@@ -253,7 +233,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("hard");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -268,7 +248,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("hard");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -283,7 +263,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons();
+          gameOverButtons("hard");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -298,7 +278,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons();
+        gameOverButtons("hard");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -340,16 +320,19 @@ function checkAnswer(qIndex, bIndex, difficulty)
   }
 }
 
-function gameOverButtons(){
+function gameOverButtons(mode){
   $(".qbButton").hide();
   $(".returnButton").show();
   $(".returnButton").css({"background-color":"yellow"});
   $("#Question").text("Congratulations! You passed the test.")
 
-  $("#backButton").click(function(){
-    $(".returnButton").hide();
-    $(".mmButton").show();
-    $("#Question").hide();
+  $("#replayButton").click(function(){
     questionOn = 0;
+    $(".qbButton").show();
+    $(".returnButton").hide();
+    if(difficulty == easy)easyGame();
+    if(difficulty == medium)easyGame();
+    if(difficulty == hard)easyGame();
   });
 }
+});
