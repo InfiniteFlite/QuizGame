@@ -11,12 +11,12 @@ let mediumAnswersBL = ["Sodium Ions","Waterhesion","Nutrients in, Waste out","Cy
 let mediumAnswersBR = ["Hydrogen Ions","Selfhesion","Hydrogen out, Nitrogen in","Membrane","Squareness","The powerhouse of the cell","Only with electrons","Cell Shell","5 million","30 centimeters"];
 let correctButtonsM = ["4","2","3","1","3","4","1","1","2","4"];
 let mediumQuestions = ["Acidity is the concentration of","Water sticking to iteself is called","Cell walls allow","The center of a cell is the","Cells want to maximise","The mitochondia is","Is water a good solvent?","Plant cells have what instead of a cell membrane","About how many cells does a human have","How big is the largest single celled organism"];
-let hardAnswersTL = ["1","2","3","4","5","6","7","8","9","10"];
-let hardAnswersTR = ["1","2","3","4","5","6","7","8","9","10"];
-let hardAnswersBL = ["1","2","3","4","5","6","7","8","9","10"];
-let hardAnswersBR = ["1","2","3","4","5","6","7","8","9","10"];
+let hardAnswersTL = ["base","Heat Tension","RNA","1","Mylons","Water","Ribosomes","Vixils","Carbon","Electricty"];
+let hardAnswersTR = ["acid","Heat Levels","BNA","2","Intestinal Cells","Oxygen","Dioxyribonucelicacid","Ventricles","Nitrogen","Heat"];
+let hardAnswersBL = ["salty","High Osmosis","MMA","4","Neurons","Nitrogen","Bismuth","Villi","Oxygen","Water"];
+let hardAnswersBR = ["sweet","Heat Capacity","TBA","6","Electrons","Carbon","Enzymes","Venzymes","Hydrogen","Hydroelectric"];
 let correctButtonsH = ["2","4","1","1","3","2","4","3","1","2"];
-let hardQuestions = ["Question 1","Question 2","Question 3","Question 4","Question 5","Question 6","Question 7","Question 8","Question 9","Question 10"];
+let hardQuestions = ["A high pH means something is a(n)","Water being able to absorb large amounts of heat is called","What is the single strand version of DNA","How many Oxygens does water have","The longest cells are","Dissolving CaCN in an acid releases","What breaks down proteins","What are the folds on cell membranes called","What is all life based on","What is a form of energy used in chemical reactions"];
 var gameOver = false;
 var questionOn = 0;
 
@@ -91,7 +91,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("easy");
+          gameOverButtons("easy","gameOver");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -106,7 +106,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("easy");
+          gameOverButtons("easy","gameOver");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -121,7 +121,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("easy");
+          gameOverButtons("easy","gameOver");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -136,7 +136,7 @@ function easyGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons("easy");
+        gameOverButtons("easy","gameOver");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -153,7 +153,7 @@ function mediumGame()
   $(".qbButton").show();
   $("#Question").show();
   $("#timer").show();
-  setInterval(countdown(120), 1000);
+  countdown(60, "medium");
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "medium"))
@@ -164,7 +164,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("medium");
+          gameOverButtons("medium","gameOver");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -179,7 +179,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("medium");
+          gameOverButtons("medium","gameOver");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -194,7 +194,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("medium");
+          gameOverButtons("medium","gameOver");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -209,7 +209,7 @@ function mediumGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons("medium");
+        gameOverButtons("medium","gameOver");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -226,7 +226,7 @@ function hardGame()
   $(".qbButton").show();
   $("#Question").show();
   $("#timer").show();
-  setInterval(countdown(60), 1000);
+  countdown(20, "hard");
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "hard"))
@@ -237,7 +237,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("hard");
+          gameOverButtons("hard","gameOver");
       }
     else {
       $("#q1b").css({"background-color":"red"});
@@ -252,7 +252,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("hard");
+          gameOverButtons("hard","gameOver");
       }
     else {
       $("#q2b").css({"background-color":"red"});
@@ -267,7 +267,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-          gameOverButtons("hard");
+          gameOverButtons("hard","gameOver");
       }
     else {
       $("#q3b").css({"background-color":"red"});
@@ -282,7 +282,7 @@ function hardGame()
       }
       else if(questionOn == 10)
       {
-        gameOverButtons("hard");
+        gameOverButtons("hard","gameOver");
       }
     else {
       $("#q4b").css({"background-color":"red"});
@@ -324,25 +324,41 @@ function checkAnswer(qIndex, bIndex, difficulty)
   }
 }
 
-function gameOverButtons(mode){
+function gameOverButtons(mode, reason){
   $(".qbButton").hide();
   $(".returnButton").show();
   $(".returnButton").css({"background-color":"yellow"});
-  $("#Question").text("Congratulations! You passed the test.")
+  if(reason == "time")
+    $("#Question").text("You ran out of time!");
+
+  if(reason == "gameOver")
+    $("#Question").text("You passed the test!");
 
   $("#replayButton").click(function(){
     questionOn = 0;
     $(".qbButton").show();
     $(".returnButton").hide();
-    if(difficulty == easy)easyGame();
-    if(difficulty == medium)easyGame();
-    if(difficulty == hard)easyGame();
+    if(difficulty == easy)
+      easyGame();
+    if(difficulty == medium)
+      easyGame();
+    if(difficulty == hard)
+      easyGame();
   });
 }
-});
 
-function countdown(time){
-  time--;
+
+function countdown(time, difficulty){
   $("#timer").text(time);
-  if(time == 0)return;
+  var timer = setInterval(function(){
+    time--;
+    if(time == 0){
+      gameOverButtons(difficulty, "time");
+      clearInterval(timer);
+    }
+    if(questionOn == 10)
+      clearInterval(timer);
+    $("#timer").text(time);
+  },1000);
 }
+});
