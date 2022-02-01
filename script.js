@@ -5,12 +5,12 @@ let easyAnswersBL = ["animals","3","Walter-Jesse","Big and Small","Within","Pola
 let easyAnswersBR = ["water","4","Riechman-Weltzer","Underhanded and Overhanded","Withstand","one-sided","Dioxyribonucelicacid","Lizmotis","Potency","They would need too much water"];
 let correctButtonsE = ["2","4","2","1","1","3","2","4","3","2"];
 let easyQuestions = ["Biology is the study of","How many nucleobases are there?","What experiment showed that amino acids can come from nothing?","What are the two basic types of cells?","'A' is the latin root for","The bonds INSIDE of water are what?","The bonds BETWEEN water molecules are what?","Which is not a property of water?","What is PH a measure of?","Why are cells small?"];
-let mediumAnswersTL = ["1","2","3","4","5","6","7","8","9","10"];
-let mediumAnswersTR = ["1","2","3","4","5","6","7","8","9","10"];
-let mediumAnswersBL = ["1","2","3","4","5","6","7","8","9","10"];
-let mediumAnswersBR = ["1","2","3","4","5","6","7","8","9","10"];
+let mediumAnswersTL = ["Calcium Ions","Cohesion","Nutrients out, Waste in","Nucleus","Volume","Useless","Yes","Cell Wall","100 thousand","1 meter"];
+let mediumAnswersTR = ["Helium Ions","Adhesion","Hydrogen in, Nitrogen out","Chromosome","Roundness","Used to store waste","Only with protons","They have a cell membrane","1 trillion","6 milimeters"];
+let mediumAnswersBL = ["Sodium Ions","Waterhesion","Nutrients in, Waste out","Cytoplasm","Surface Area","Regulates DNA","No","Cell Coating","500 billion","1 centimeter"];
+let mediumAnswersBR = ["Hydrogen Ions","Selfhesion","Hydrogen out, Nitrogen in","Membrane","Squareness","The powerhouse of the cell","Only with electrons","Cell Shell","5 million","30 centimeters"];
 let correctButtonsM = ["4","2","3","1","3","4","1","1","2","4"];
-let mediumQuestions = ["Question 1","Question 2","Question 3","Question 4","Question 5","Question 6","Question 7","Question 8","Question 9","Question 10"];
+let mediumQuestions = ["Acidity is the concentration of","Water sticking to iteself is called","Cell walls allow","The center of a cell is the","Cells want to maximise","The mitochondia is","Is water a good solvent?","Plant cells have what instead of a cell membrane","About how many cells does a human have","How big is the largest single celled organism"];
 let hardAnswersTL = ["1","2","3","4","5","6","7","8","9","10"];
 let hardAnswersTR = ["1","2","3","4","5","6","7","8","9","10"];
 let hardAnswersBL = ["1","2","3","4","5","6","7","8","9","10"];
@@ -152,6 +152,8 @@ function mediumGame()
   $(".mmButton").hide();
   $(".qbButton").show();
   $("#Question").show();
+  $("#timer").show();
+  setInterval(countdown(120), 1000);
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "medium"))
@@ -223,6 +225,8 @@ function hardGame()
   $(".mmButton").hide();
   $(".qbButton").show();
   $("#Question").show();
+  $("#timer").show();
+  setInterval(countdown(60), 1000);
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "hard"))
@@ -336,3 +340,9 @@ function gameOverButtons(mode){
   });
 }
 });
+
+function countdown(time){
+  time--;
+  $("#timer").text(time);
+  if(time == 0)return;
+}

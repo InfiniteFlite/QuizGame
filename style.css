@@ -42,7 +42,16 @@ button{
 #Question{
   display:none;
   margin-left: 41%;
-  margin-top: 10%;
+  margin-top: 5%;
+  font-size: 40px;
+  width:300px;
+}
+
+#timer{
+  display:none;
+  text-align:center;
+  margin-left: 45%;
+  margin-top: 0%;
   font-size: 40px;
   width:300px;
 }
