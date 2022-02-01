@@ -11,8 +11,8 @@ let mediumAnswersBL = ["Sodium Ions","Waterhesion","Nutrients in, Waste out","Cy
 let mediumAnswersBR = ["Hydrogen Ions","Selfhesion","Hydrogen out, Nitrogen in","Membrane","Squareness","The powerhouse of the cell","Only with electrons","Cell Shell","5 million","30 centimeters"];
 let correctButtonsM = ["4","2","3","1","3","4","1","1","2","4"];
 let mediumQuestions = ["Acidity is the concentration of","Water sticking to iteself is called","Cell walls allow","The center of a cell is the","Cells want to maximise","The mitochondia is","Is water a good solvent?","Plant cells have what instead of a cell membrane","About how many cells does a human have","How big is the largest single celled organism"];
-let hardAnswersTL = ["base","Heat Tension","RNA","1","Mylons","Water","Ribosomes","Vixils","Carbon","Electricty"];
-let hardAnswersTR = ["acid","Heat Levels","BNA","2","Intestinal Cells","Oxygen","Dioxyribonucelicacid","Ventricles","Nitrogen","Heat"];
+let hardAnswersTL = ["acid","Heat Tension","RNA","1","Mylons","Water","Ribosomes","Vixils","Carbon","Electricty"];
+let hardAnswersTR = ["base","Heat Levels","BNA","2","Intestinal Cells","Oxygen","Dioxyribonucelicacid","Ventricles","Nitrogen","Heat"];
 let hardAnswersBL = ["salty","High Osmosis","MMA","4","Neurons","Nitrogen","Bismuth","Villi","Oxygen","Water"];
 let hardAnswersBR = ["sweet","Heat Capacity","TBA","6","Electrons","Carbon","Enzymes","Venzymes","Hydrogen","Hydroelectric"];
 let correctButtonsH = ["2","4","1","1","3","2","4","3","1","2"];
@@ -95,6 +95,7 @@ function easyGame()
       }
     else {
       $("#q1b").css({"background-color":"red"});
+      wrongShake("#q1b", 2);
     }
     });
     $("#q2b").click(function(){
@@ -362,3 +363,13 @@ function countdown(time, difficulty){
   },1000);
 }
 });
+
+function wrongShake(btnName, numShakes){
+  for(let i = 0; i<numShakes; i++)
+  {
+    $(btnName).animate({left : "5px"}, fast);
+    $(btnName).animate({right : "10px"}, fast);
+    $(btnName).animate({left : "10px"}, fast);
+    $(btnName).animate({right : "5px"}, fast);
+  }
+}

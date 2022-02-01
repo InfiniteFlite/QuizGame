@@ -11,19 +11,26 @@ button{
   border-radius: 12px;
 }
 
+#Menu{
+    display:block;
+    margin-top:17%;
+    width: 100vw;
+    height: 101px;
+}
+
 .mmButton{
   width:200px;
   height:100px;
   margin-left: 17%;
   display:inline-block;
-  margin-top:17%
 }
 
 .qbButton{
   display:none;
   width:200px;
   height:100px;
-  margin:2%;
+  margin:3%;
+  padding:10px;
 }
 
 .returnButton{
@@ -34,9 +41,9 @@ button{
 }
 
 #questionBank{
-  margin-top:10%;
-  margin-left:38%;
-  width:500px;
+  display:block;
+  margin:auto;
+  width:550px;
 }
 
 #Question{
@@ -50,8 +57,7 @@ button{
 #timer{
   display:none;
   text-align:center;
-  margin-left: 45%;
-  margin-top: 0%;
+  margin: auto;
   font-size: 40px;
   width:300px;
 }
