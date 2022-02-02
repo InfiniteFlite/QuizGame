@@ -4,7 +4,6 @@
   <title>The Biology Quiz Game</title>
   <link href="style.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
   <script src="script.js"></script>
 </head>
 <body>
@@ -25,6 +24,15 @@
 <button class="returnButton" id="backButton">Back to menu</button>
 </a>
 <button class="returnButton" id="replayButton">Replay</button>
+</div>
+<div id=#settings>
+  <form>
+    <label for="mtime">Medium Timer Setting:</label>
+    <input type="text" id="mtime" name="mtime" /><br>
+    <label for="htime">Hard Timer Setting:</label>
+    <input type="text" id="htime" name="htime" /><br>
+    <input id="Submit" type="submit" value="Submit" />
+  </form>
 </div>
 </body>
 </html>

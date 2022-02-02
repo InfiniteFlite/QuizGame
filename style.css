@@ -1,14 +1,23 @@
+body{
+  background-color: beige;
+  font-family: 'Courier New', monospace;
+}
+
 #topbar{
   width:100vw;
   background-color:black;
   color:green;
   text-align: center;
+  margin-top:0%;
 }
 
 button{
   background-color:lightgreen;
   border-color:green;
   border-radius: 12px;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Courier New', monospace;
 }
 
 #Menu{
@@ -27,29 +36,31 @@ button{
 
 .qbButton{
   display:none;
-  width:200px;
+  width:250px;
   height:100px;
-  margin:3%;
-  padding:10px;
+  margin:2%;
 }
 
 .returnButton{
   display:none;
   width:200px;
   height:100px;
-  margin:2%;
+  margin-left:16%;
 }
 
 #questionBank{
   display:block;
   margin:auto;
-  width:550px;
+  float:right;
+  width:80vw;
 }
 
 #Question{
   display:none;
+  text-align: center;
   margin-left: 41%;
   margin-top: 5%;
+  padding:0px;
   font-size: 40px;
   width:300px;
 }

@@ -19,15 +19,18 @@ let correctButtonsH = ["2","4","1","1","3","2","4","3","1","2"];
 let hardQuestions = ["A high pH means something is a(n)","Water being able to absorb large amounts of heat is called","What is the single strand version of DNA","How many Oxygens does water have","The longest cells are","Dissolving CaCN in an acid releases","What breaks down proteins","What are the folds on cell membranes called","What is all life based on","What is a form of energy used in chemical reactions"];
 var gameOver = false;
 var questionOn = 0;
+var mediumTime = 60;
+var hardTime = 1;
 
 $(document).ready(function(){
   $('#easyButton').click(easyGame);
   $("#mediumButton").click(mediumGame);
   $("#hardButton").click(hardGame);
+  $("#Submit").click(updateSettings);
 
 function getQuestionOrder(numQuetions)
 {
-
+  qOrder = [];
   for(let i=0;i<numQuetions;i++)
   {
     currentNum = Math.round(Math.random() * (numQuetions - 1));
@@ -39,6 +42,12 @@ function getQuestionOrder(numQuetions)
   }
   console.log(qOrder);
 }
+
+  function updateSettings(){
+    mediumTime = $("#mtime").val();
+    hardTime = $("#htime").val();
+    console.log($("#mtime").val());
+  }
 
 function displayEasyAnswers(qNumber)
 {
@@ -80,6 +89,7 @@ function easyGame()
   $(".mmButton").hide();
   $(".qbButton").show();
   $("#Question").show();
+  $("#Menu").hide();
   displayEasyAnswers(questionOn);
 
     $("#q1b").click(function(){
@@ -95,7 +105,6 @@ function easyGame()
       }
     else {
       $("#q1b").css({"background-color":"red"});
-      wrongShake("#q1b", 2);
     }
     });
     $("#q2b").click(function(){
@@ -154,7 +163,8 @@ function mediumGame()
   $(".qbButton").show();
   $("#Question").show();
   $("#timer").show();
-  countdown(60, "medium");
+  $("#Menu").hide();
+  countdown(mediumTime, "medium");
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "medium"))
@@ -227,7 +237,8 @@ function hardGame()
   $(".qbButton").show();
   $("#Question").show();
   $("#timer").show();
-  countdown(20, "hard");
+  $("#Menu").hide();
+  countdown(hardTime, "hard");
 
     $("#q1b").click(function(){
       if(checkAnswer(qOrder[questionOn], 1, "hard"))
@@ -339,12 +350,12 @@ function gameOverButtons(mode, reason){
     questionOn = 0;
     $(".qbButton").show();
     $(".returnButton").hide();
-    if(difficulty == easy)
+    if(mode == "easy")
       easyGame();
-    if(difficulty == medium)
-      easyGame();
-    if(difficulty == hard)
-      easyGame();
+    if(mode == "medium")
+      mediumGame();
+    if(mode == "hard")
+      hardGame();
   });
 }
 
@@ -360,16 +371,8 @@ function countdown(time, difficulty){
     if(questionOn == 10)
       clearInterval(timer);
     $("#timer").text(time);
+    if(time < 10)
+      $("#timer").css({"color":"red"});
   },1000);
 }
 });
-
-function wrongShake(btnName, numShakes){
-  for(let i = 0; i<numShakes; i++)
-  {
-    $(btnName).animate({left : "5px"}, fast);
-    $(btnName).animate({right : "10px"}, fast);
-    $(btnName).animate({left : "10px"}, fast);
-    $(btnName).animate({right : "5px"}, fast);
-  }
-}
