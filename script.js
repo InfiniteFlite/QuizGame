@@ -20,13 +20,14 @@ let hardQuestions = ["A high pH means something is a(n)","Water being able to ab
 var gameOver = false;
 var questionOn = 0;
 var mediumTime = 60;
-var hardTime = 1;
+var hardTime = 20;
+
 
 $(document).ready(function(){
   $('#easyButton').click(easyGame);
   $("#mediumButton").click(mediumGame);
   $("#hardButton").click(hardGame);
-  $("#Submit").click(updateSettings);
+  console.log(mediumTime);
 
 function getQuestionOrder(numQuetions)
 {
@@ -42,12 +43,6 @@ function getQuestionOrder(numQuetions)
   }
   console.log(qOrder);
 }
-
-  function updateSettings(){
-    mediumTime = $("#mtime").val();
-    hardTime = $("#htime").val();
-    console.log($("#mtime").val());
-  }
 
 function displayEasyAnswers(qNumber)
 {
